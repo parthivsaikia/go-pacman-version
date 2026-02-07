@@ -5,6 +5,14 @@ import (
 	"unicode"
 )
 
+func IsValid(v string) bool {
+	if strings.TrimSpace(v) != "" {
+		return true
+	} else {
+		return false
+	}
+}
+
 func LessThan(v1, v2 string) bool {
 	return Compare(v1, v2) == -1
 }
