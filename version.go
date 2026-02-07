@@ -20,6 +20,14 @@ func NewVersion(v string) Version {
 	}
 }
 
+func LessThan(v1, v2 string) bool {
+	return Compare(v1, v2) == -1
+}
+
+func MoreThan(v1, v2 string) bool {
+	return Compare(v1, v2) == 1
+}
+
 func Compare(v1, v2 string) int {
 	// 1. Handle exact string equality (covers both empty case)
 	if v1 == v2 {
