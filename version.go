@@ -5,21 +5,6 @@ import (
 	"unicode"
 )
 
-type Version struct {
-	Epoch   string
-	Version string
-	Release string
-}
-
-func NewVersion(v string) Version {
-	e, ver, r := parseEvr(v)
-	return Version{
-		Epoch:   e,
-		Version: ver,
-		Release: r,
-	}
-}
-
 func LessThan(v1, v2 string) bool {
 	return Compare(v1, v2) == -1
 }
@@ -29,11 +14,9 @@ func MoreThan(v1, v2 string) bool {
 }
 
 func Compare(v1, v2 string) int {
-	// 1. Handle exact string equality (covers both empty case)
 	if v1 == v2 {
 		return 0
 	}
-	// 2. Handle one side empty (C behavior: !a -> -1, !b -> 1)
 	if v1 == "" {
 		return -1
 	}
@@ -47,7 +30,6 @@ func Compare(v1, v2 string) int {
 	ret := rpmvercmp(epoch1, epoch2)
 	if ret == 0 {
 		ret = rpmvercmp(ver1, ver2)
-		// 3. Match C logic: only compare if BOTH releases exist
 		if ret == 0 && rel1 != "" && rel2 != "" {
 			ret = rpmvercmp(rel1, rel2)
 		}
