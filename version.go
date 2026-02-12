@@ -6,11 +6,18 @@ import (
 )
 
 func IsValid(v string) bool {
-	if strings.TrimSpace(v) != "" {
-		return true
-	} else {
-		return false
+	valid := true
+	if strings.TrimSpace(v) == "" {
+		valid = false
 	}
+	_, version, release := parseEvr(v)
+	if strings.TrimSpace(version) == "" || strings.Contains(version, ":") || strings.Contains(version, "-") || strings.Contains(version, "/") || strings.Contains(version, " ") {
+		valid = false
+	}
+	if strings.TrimSpace(release) == "" {
+		valid = false
+	}
+	return valid
 }
 
 func LessThan(v1, v2 string) bool {
