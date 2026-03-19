@@ -11,6 +11,13 @@ This library implements the exact version comparison logic used by `libalpm` (th
 - **Robust:** Handles complex version strings including Epochs (`1:1.0`), versions (`1.0`), and releases (`-1`).
 - **Permissive:** Like Pacman, it handles malformed strings gracefully without panicking.
 
+## Used by
+
+[![Used by Copacetic](https://img.shields.io/badge/used_by-Copacetic-00cc00)](https://github.com/project-copacetic/copacetic)
+
+- **[Copacetic](https://github.com/project-copacetic/copacetic)** — Arch Linux / pacman support  
+  (merged March 19, 2026 via [PR #1467](https://github.com/project-copacetic/copacetic/pull/1467))
+
 ## Installation
 
 ```bash
@@ -24,7 +31,7 @@ package main
 
 import (
     "fmt"
-    pacman "[github.com/yourusername/go-pacman-version](https://github.com/yourusername/go-pacman-version)"
+    pacman "github.com/parthivsaikia/go-pacman-version"
 )
 
 func main() {
